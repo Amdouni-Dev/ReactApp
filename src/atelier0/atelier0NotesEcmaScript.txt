@@ -1,0 +1,47 @@
+*************Object
+* Object.assign()==> copier  les propriétes fi objet cible
+ * Object.entries()==> retourne un tableu de tous les couples clés valeurs // yaani yraja3 objet key value
+ * Object.is()==> comparer si deux valeurs sont strictement egales
+ * Object.values()==> yraja3 les valeur de l'objet
+ * Object.defineProperty()
+ * Object.defineProperties()==> definir des nouvelles proprietes sur un objet ou de modifier des proprietés existantes avec plus de controle 
+ * 
+
+***********Tableau
+
+
+concat ==> bech tzid haja f tableau
+filter   ==> nhot fiha condition w traja3li tableau fih elements selon l condition 
+find    ==> nhot fiha condition w traja3li awel element m tableau selon l condition hdhyka 
+map   ==> yasna3li un tableau w yappliqui aalih eli ena bech nhothoulou soit op mathematique soit ..
+findIndex ==> yraja3li awel index mte3 element selon l condition , ken mel9a chay yraja3 -1
+push      ==> tzid element w ila akther lel tableau w traja3li taille 
+reduce   ==> yajma3 les elements bech ykharej element wehed khw
+reverse ==> bech te9leb les elements f tableau
+shift    ==> tfassakh l'elemnt louleni w traj3ou 
+sort   ==> tratteb les elements mte3 tableau
+forEach ==> n'executi ay fonction aala ay element
+join ==> traja3li une chaine de caractere fiha les elements lkol separées bel haja illi ena nhebha 
+slice ==> tekhouli portion m tableau (nhotelha indice debut w indice fin, w indice fin dima exclus)
+
+splice ==> (pour remplacer un element) tekhou 3 elements => l'element loul w thot fih l'index elli bech tbadlou w l'element theni thot fih 9addeh men element , element theleth thot fih bech bich tbadel 
+
+unshift ==> tzid des elements awel tableau w traja3li size mte3ou 
+
+
+**********Destruction
+**********Iteration
+**********Spread operator
+**********Fonctions asynchrones
+**********Export et Import
+
+
+
+
+
+
+
+
+
+
+

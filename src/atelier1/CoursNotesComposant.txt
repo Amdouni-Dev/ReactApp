@@ -1,0 +1,157 @@
+******************JSX:JavaScript Syntax eXtension***********
+JSX:basé sur xml
+bel JSX:
+***najmou nektbou code html (
+    exp:
+    let name='Mouna'
+    const element=<h1>Hello, {name}</h1>;)==>Hello, Mouna
+***najmou nesta3mou des objets
+    exp:
+    const etudiant={
+        nom:'Mouna',
+        prenom:'Amdouni'
+    };
+    return(
+        <div>
+            <h1>
+                Bonjour {etudiant.nom} {etudiant.prenom}
+            </h1>
+        </div>
+    )==>Bonjour Mouna Amdouni
+***najmou nesta3mou des fonctions
+    exp:
+    function getEtudiant(etudiant){return etudiant;}
+    return(
+        <div>
+            <h1>
+                Bonjour {getEtudiant('Mouna Amdouni')}}
+            </h1>
+        </div>
+    );==>Bonjour Mouna Amdouni
+***najmou nesta3mou des listes
+    exp:
+    const listeEtudiant=[
+        {nom:'Mouna',prenom:'Amdouni',age:23,ObjectID:0},
+        {nom:'Mouna1',prenom:'Amdouni1',age:40,ObjectID:1}
+    ];
+    return(
+        <div>
+            {listeEtudiant.map(function(item){
+                return <div key={item.ObjectID} >{item.prenom}</div>
+            }}
+        </div>
+    );==>Amdouni Amdouni1
+
+***najmou nesta3mlou des classes: className
+   bech na3ty esm classe nesta3mel: <div> className="maClasse"</div> // me3ach nesta3mel class="" 
+***najmou nesta3mou des attributs f label:htmlFor
+    <label htmlFor="name" >Name </label>
+NB:kol kelma tetkteb en camelCase==>ya3ni l7arfloul miniscxule w theni majuscule(class-name==>className)
+***les commentaires: {/* */}
+***najmou nzidou des styles 
+bech naa3mel style lezemni nektbou en tant qu'objet avec:
+ --> les proprietés en camelCase 
+ -->les valeurs entre guillemets 
+    exp:
+    const Hello = ()=>{
+        const inlineStyle={
+            color:"green",
+            fontSize:"14px",
+        };
+        return(
+            <>
+                <div className="maclasse" >
+                    <p style={inlineStyle} >Hi React Class</p>
+                </div>
+            </>
+        );
+    }
+
+
+******************Babel*********
+Babel:est un transpileur :il sert a compiler un code source mte3 ay langage l code source mte3 ay langage okhra
+ahna bech nesta3mlou l babel bech ybadlelna l javaScript (jsx,ES2015+) l code JavaScript capable detre 'interpreté par les anciens navigateur
+Babel najmou nsobbouh fel projet mte3na 
+najmou ncodiw b Babel  en ligne sur l'@: https://babeljs.io/repl 
+
+
+
+
+******************Composants React*********
+kif l composant fel angular :
+l composant howa ensemble de code fih la logique et des fonctions mte3 app React
+najmou nasn3ou plusieurs composants w ykounou fard espace w najmou naamlou l'execution mte3 kol composant wahdou 
+2Types de composants:
+-->Composant de classe:sous forme de classe et herite de la classe React.component
+    exp:
+    import React from "react;
+    class classcomponent extends React.Component{
+        render(){
+            return <h1>Hello , world</h1>
+        }
+    }
+-->Composant fonctionnel:sous forme d'une fonction javaScript
+    import React from "react
+    function FunctionalComponent(){
+        return <h1>Hello, world</h1>
+    }    
+
+
+
+******************Props & states*********
+Props & states:houma deux variables yesta3melhom React pour contenir les informations d'un composant
+-->fi fonction JavaScript :najmou ykoun aana plusieurs parametres ==> c le cas mte3 2 types de composants React(class,fonctionnel)==>hedha yetsama Props
+-->l'etat mte3 composant ==>hedheka states
+Props Vs states:
+1-Props:jeya men bara l composant
+2-States:houma des propriétes : l'etata local mte3 l composant
+
+****Props:
+nesta3mlouhom bech naamlou transfer des donnees d'un composant parent a ses fils
+les données ili awjoudin fel variables Props : les fils meynajmou ken ya9rawhom
+menajem n3adi une Props ken men composant parent l comosant fils direct
+
+    exp: const element=<Welcome name="Jane Doe" />
+    ***fi composant class:
+        class Welcome extends React.Component{
+            render(){
+                return <h1>Hello , {this.props.name} </h1>
+            }
+        }
+    ***fi composant fonctionnel:
+        function Welcome(props){
+            return <h1>Hello, {props.name} </h1>
+        }
+***States:
+NB:cette partie concerne les composants de classes
+state mte3 composant :correspondant a son etat local 
+state najmou nbadlou fiha au cours du temps en reponse a des evenements et des actions effectués par l'utilisateur
+state metetbaddel ken fel composant mte3ha 
+ay changement f state ya3mel une mise a jour du composant
+nesta3mlou setState() : bech nbadlou l valeur mte3 state 
+ 
+
+
+******************Cycle de vie d'un composant React*********
+
+////////////////////////
+Des Notes:
+1-menajmouch nesta3mlou this.props fel constructeur idheken esta3meltha f super
+2-props menajmech nbaddelha w state najem nbaddeha b setState
+3-Bind nesta3mlouha bech narbet expliciteemnt le this de la methode a l'instance de la classe React ds laquelle elle est definie 
+// l  bind nestaamlou maaha this mte3 l composant illi f westou 
+4-l props houma les proprietés 
+5-En résumé, un constructeur paramétré avec des props peut être utilisé pour:(bech nchouf l'etat mte3 l composant w ila narbet les methodes bel instance composant)
+5.1- initialiser l'état du composant ou lier des méthodes à l'instance du composant.
+
+6-getDerivedStateFromProps(c une methode predefinie du cycle de vie ):nesta3melha f kol mara l props w ila l'etat yatbadlou w elle permet bech taamel la synchronisation mte3 l'etat du composant b les valeurs jdod mte3 props  
+7-Mounting f React:C'est la première étape dans le processus de rendu d'un composant dans le DOM, qui se produit lorsque le composant est créé et inséré dans le DOM.
+8-La méthode componentDidMount() est généralement utilisée pour effectuer des tâches qui ont besoin d'être exécutées une fois que le composant est rendu dans le DOM. 
+// componentDidMount:nestaamlouha bech taamel l'exacution mte3 les tache une fois l composant bidou est visible sur le DOM(Document Object Model)
+9-Le "Unmounting" :hjiya etape tsir ki yetna7a l composant m DOM
+10- shouldComponentUpdate: hiya methode de cycle de vie de composant w ysirelha l'appel 9bal mee l composant tsirlou mis a jour (hiya tnajem twa9ef l mise a jour mte3 lcomposant)
+
+11-getSnapshotBeforeUpdate(lezem tkoun maaha l methode :componentDidUpdate):  ysirelha appel  juste 9bal metsir mise a jour lel composant: taamel l capture(snapshot) mte3 image instantannée des proprietés ou de l'etat actuel du composant 9bal metsirlou mise a jour 
+
+12- ComponentWillUnmounting=
+NB:yrender l composant ==> yaawed yaamel execution des fonctions // render traja3 l'affichage 

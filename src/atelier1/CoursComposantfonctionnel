@@ -1,0 +1,30 @@
+this meaach nesta3mlha 
+nraja3 jsx
+menest7a9ech render
+l foncction meterity men chay  
+menesta3mlouch methodes cycle de vie 
+
+
+kitabda aro function lezemk declariha sinn na3mel fonctuion aadeya 
+
+Hooks:une fonction 
+hook personnalise:howa m traitement eli yet3awed dima 
+par convention l hook lezemha use (fel hook personnalisé)
+nestaamelhom ken maa composant fonctionnel
+usestate: simulation mte3 state fi west l functionnal composant
+useEffect: simulation cycle de vie 
+usecontext: ki yabda aandi barcha props bech nabeethhom yetsamew context
+
+1--useState:traja3 tableau fih 2 element(value mte3 stete(kol variable mte3 state aandha l'implementation mte3ha ), setter bech tbaddel state(setter t3awedh setState) )
+2-- [0, ƒ] 
+3-- useEffect:une f° tekhou en paraemetre une fonction w tableau w traje3 fonction
+l fonction loula taamel simulation lel mouting w l updating
+l fonction loula tekhdem aal mounting 
+w l fonction tekhdem zeda maa l updating (l updating m tableau de dependance)
+ken tableau feregh =>meyamlech execution 
+ki yabda l param 2 feregh==>
+ken tableau mouch mawjoud ==> dima yaamel render 
+93adelna l unmouting: tsir f return 
+ki ybda  feregh yekhdem fel mouting 
+4---use context:haja partagé bin les composants:naamlou l creation mte3 l context bel createContext
+useRef:kif l useStetemais meyraja3ch render
