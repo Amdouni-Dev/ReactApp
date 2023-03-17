@@ -1,0 +1,144 @@
+bech nesta3mel routage lezemni librairie : react-router-dom(npm install react-router-dom)
+1-Configuration des routes
+fel index.js nimport l browserRouter : import {browserRouter} from 'react-router-dom'
+     <browserRouter>
+     <App/>
+     </browserRouter>
+
+2-Definition des routes: fi Composant Routes
+<Routes>
+<Route path='/home' element={<Home />}  ></Route> 
+</Routes>
+
++++++ payh w elemnt 3ana :
+loader: kol route tnajem ta3mel definition d'une fonction loader ili tnajem tjib des donnees a l'element 9bal meyji 
+errorElement: houni ki chnab3eth exception fi 3oudh menab3eth route normal le chemin d'erreur sera rendu <Route errorElement> w l'erreur rendu disponibele avec useRouteError 
+
+
+********Routes Non parametres********************************
+<Routes>
+<Route path='/home' element={<Home />}  ></Route> 
+<Route path='/About' element={<About />}  ></Route> 
+<Route path='/Contact' element={<Contact />}  ></Route> 
+</Routes>
+
+********Routes parametres ********************************
+<Routes>
+<Route  path="/home/:username" element={<Home /> } >
+</Routes>
+
+menajem n3adi l paramere username ken fel fonction Home nesta3mel useParams()
+import {useParams} from "react-router-dom"
+export default function Home(){
+    const {username}=useParams() // houni chya3ref ili ena bech n3addijh fel parametre
+    return <h1> Welcome {username} </h1>
+
+} // localhost:3000/home/john%20Doe  (%20 bech na3mel espace )
+
+
+**** Parametre de recherche (baad l ? fel routes)
+bech nesta3mel des param de rechreche mlezemmni nesta3ml l hook useSearchParams (tekhdem presque kif l useState)
+
+import {useSearchParams} from "react-router-dom"
+function Home(){
+    const {searchParams,setSearchParams} = useSearchParams({name:""})// les criters ili bech nlawej bihom ken name
+    return( <>
+    <h1>  Welcome  {searchParams.get('name')}  </h1> // bech yaffihi l name illi fel route localhost:3000/home?name=Doe ==> welcom Doe
+    </>
+    )
+}
+
+*** NOT FOund********
+<Route path='*' elemnt={<Notfound />} >  </Route>
+
+3- Route Imbriqué : routes f iwost route okhra 
+<Route path="/descriptions" >
+<Route path="about" element={ <About /> } </Route> localhost:3000/descriptions/about
+<Route path="contact" element={ <Contact /> } </Route> localhost:3000/descriptions/contact
+
+
+</Route>
+
+4- Routes Imbriqués Template Partagés 
+<Route path="/products" element={<ProductLayout />}>
+<Route index element={ <ProductList /> }  />  // illi fiha l'index hiya l contenu mte3 lowel (illi yodhher fel productsLayout)==> l contenu mte3 l route parente
+<Route path=':/id' element={<Product />}></Route>
+<Route path="add" element={ <NewProduct /> }></Route>
+</Route>
+
+NB:
+fi wost l fonction ProductLayout nzid l <Outlet/> // l outlet jhowa 3ibara aala espace reservés lel contenu mte3 l routes enfant (kif /:id ou /add)
+export function ProductsLayout(){
+    return(
+        {
+            <>
+            <Outlet />
+            </>
+        }
+    )
+}
+
+
+**********Navigation <Link>
+Link howa 3ibara aala balise <a></a> ema hedha plus riches fel props 
+<Link to="/description/add"> Add New Product </Link>
+en plus du props to 3ana:
+reloadDocument(tekhou valeur boolean) :bech ta3mel refraichissement lel page jkol men3ayel l route illi mawjouda f <Link to=""  reloadDocument={true} /></
+replace(tekhou valeur boolean):ki tekhou true l route illi fel Link twali mawjouda fel historique mte3 navigateur
+state: nesta3louha bech na3mlou definition mte3 valeur d'etat < l valeur est accessible via useLocation()
+<Link to="/description/contact"  state={{ number: "0000" }} > contact </Link>
+
+import {useLocation} from "react-router-dom"
+function Contact(){
+    const {state} = useLocation();
+    return <h1>  welcome {state.number}  </h1> ==> welcome 0000
+}
+
+***** NavLink : howa type special mte3 l <Link> : yaaref ken l link hedheka actif w le 
+<nav>
+<u>
+<li>
+<NavLink to="home"  style= { ({ isActive })=>( {color:isActive  ? "gray" : "black" } ) }    >Home</NavLink>
+</li>
+</u>
+</nav>
+
+
+***** Navigation Manuelle(disant fel formulaire ) ==> nesta3mel l composant Navigate ou le hook useNavigate 
+import {useNavigate} from "react-router-dom"
+function Home(){
+    const navigate=useNavigate();
+    return ( <>
+    <button onClick={ ()=>navigate("/description/contact") } > Go To Contact </button>
+    </> )
+
+
+}
+
+NB: najem nesta3mel:
+navigate(-1) bech narja3 b tweli
+navigate(1) bech n9dem l 9odem l page mawjouda fel historiqe
+
+
+
+***** LazyLoading **** bech nchargi les composants de facon asynchrone wa9t ili njabda hajty bih (ya3ni l composant usirlou chargement kjen ki n3ayetlou sinn meysirlouch chargement ==> bech nhassen fel perfermence mte3 l app)
+const Contact=React.lazy( ()=>import ('./Contact') );
+const About=React.lazy( ()=>import ('./About));
+les composants  ili 3ayetelhom dynamiquement (Contact, About) lezem ykounou exploité fi balise <Suspense></Suspense> illi ykhaliini nra haja fel wa9t illi l composant hedheka 9a3ed yetcharga 
+
+<Suspense fallback={ <p>Chargement ...</p> } >
+<Routes>
+<Route path="descriptions" >
+<Route  path="about" element={<About />}  ></Route>
+</Route>
+</Routes>
+
+</Suspense>
+
+NB: 
+l hedhy lahdha React.lazy ne prend en charge que les export par defaut
+ken l module eli ena nheb nimpotih fih des export nommés ==> na3mel creation mte3 module intermediaire illi yaamel reexport mte3 composant illi nheb aalih en tant qu'export par defaut
+
+
+
+

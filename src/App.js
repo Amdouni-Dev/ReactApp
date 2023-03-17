@@ -10,28 +10,59 @@ import UnMounting from './atelier1/ComponentsClasse/UnMoiunting';
 import Updating from './atelier1/ComponentsClasse/Updating';
 import Product from './atelier1/Components/Product';
 // import Products from './atelier1/Components/Products';
-import Products from './atelier1/Correction/products';
-import FuntionalComponent from './atelier0/Atelier2/Functionnalcompoenent/FunctionalCompoenent';
+//import Products from './atelier1/Correction/products';
+import FuntionalComponent from './Atelier2/Functionnalcompoenent/FunctionalCompoenent';
+import {Route,Routes} from 'react-router-dom';
+//import Notfound from './Atelier2Routage/Components/NotFound';
+import CustomNavbar from './Atelier2Routage/Components/NavBar';
+import { lazy, Suspense } from 'react';
+const Home = lazy(()=>import('./Atelier2Routage/Components/Home'));
+const UpdateProduct = lazy(()=>import('../src/Atelier2Routage/Components/UJpdateProduct'));
+
+const ProductDetails = lazy(()=>import('../src/Atelier2Routage/Components/ProductDetails'));
+const AddProduct = lazy(()=>import('../src/Atelier2Routage/Components/AddProduct'));
+const Products = lazy(()=>import('../src/Atelier2Routage/Components/products'));
+const ProductLayout = lazy(()=>import('./Atelier2Routage/Components/ProductLayout'));
+const Notfound = lazy(()=>import('./Atelier2Routage/Components/NotFound'));
 function App() {
 
 //  ReactDOM.render(<Welcome />)
 
   return (
-    <div className="App">
-      <header className="App-header">
-       
-      
+
+    <div style={{ backgroundColor:"light" }} className="App">
+ <Suspense fallback={<h1>Loaading ....</h1>}>
+    <CustomNavbar/>
+    <Routes>
+      <Route path="*" element={<Notfound/>}/>
+      <Route path="/" element={<h1>Home</h1>}/>
+      <Route path="/home/:username" element={<Home/>}/> 
+
+
+      <Route path="/products" element={<ProductLayout />}>
+          <Route path="list" element={<Products />}/>
+         <Route path="add" element={<AddProduct/>}/> 
+      <Route path='update/:id' element={<UpdateProduct />}/>
+
+          <Route path=":id" element={<ProductDetails/>}/>
+      </Route>
+    </Routes>
+    </Suspense>
+      {/* <header className="App-header"> */}
+  
 
 
       {/* <ClassComponent /> */}
       {/* <Mounting></Mounting> */}
       {/* <UnMounting></UnMounting> */}
-     <h1>Correction</h1>
-     {/* <Updating/> */}
-     {/* <Product></Product> */}
-     {/* <Products></Products>  */}
-<FuntionalComponent  titre="functionnal componenet"></FuntionalComponent>
-      </header>
+     {/* <h1>Correction</h1> */}
+     {/* <Updating/>  */}
+     <br/>
+      {/* <Product></Product>  */}
+      <br/>
+      {/* <Products></Products>  */}
+{/* <FuntionalComponent  titre="functionnal componenet"></FuntionalComponent> */}
+      {/* </header> */}
     </div>
   );
 }
