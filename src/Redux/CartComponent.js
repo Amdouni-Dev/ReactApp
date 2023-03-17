@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
+import { removeItemFromCart, deleteItem } from './actions'
 
 const CartComponent = () => {
   const dispatch = useDispatch()
@@ -10,6 +11,10 @@ const CartComponent = () => {
       payload: productId
     })
   }
+  const handleDeleteItem = (productId) => {
+    dispatch(deleteItem(productId))
+  }
+
 
   return (
     <div>
@@ -19,7 +24,8 @@ const CartComponent = () => {
           <p>{item.name}</p>
           <p>Prix : {item.price} €</p>
           <img src={item.img} alt={item.name} />
-          <button onClick={() => handleRemoveItem(item.id)}>Supprimer</button>
+          <button onClick={() => handleRemoveItem(item.id)}>Rmove</button>
+          <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
         </div>
       ))}
     </div>
