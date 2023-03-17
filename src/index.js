@@ -4,11 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { applyMiddleware, createStore } from 'redux';
+import logger from 'redux-logger';
+
+import { Provider } from 'react-redux';
+import counter from './Redux/Reducers/counterReducer'
+const store = createStore(counter,applyMiddleware(logger));
+store.subscribe(()=>console.log(store.getState()))
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    <React.StrictMode>
   <BrowserRouter>
-    <App />
+  <Provider store={store} ><App /></Provider>
     </BrowserRouter>
 </React.StrictMode>
 );

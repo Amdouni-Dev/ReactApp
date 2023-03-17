@@ -16,6 +16,7 @@ import {Route,Routes} from 'react-router-dom';
 //import Notfound from './Atelier2Routage/Components/NotFound';
 import CustomNavbar from './Atelier2Routage/Components/NavBar';
 import { lazy, Suspense } from 'react';
+import ReduxComponent from './Redux/ReduxComponent'
 const Home = lazy(()=>import('./Atelier2Routage/Components/Home'));
 const UpdateProduct = lazy(()=>import('../src/Atelier2Routage/Components/UJpdateProduct'));
 
@@ -37,6 +38,7 @@ function App() {
       <Route path="*" element={<Notfound/>}/>
       <Route path="/" element={<h1>Home</h1>}/>
       <Route path="/home/:username" element={<Home/>}/> 
+      <Route path="/Redux"  element={ <ReduxComponent /> } ></Route>
 
 
       <Route path="/products" element={<ProductLayout />}>
@@ -88,6 +90,7 @@ import { ReactDOM } from 'react-dom/client';
 import Mounting from './atelier1/ComponentsClasse/Mounting';
 import Product from './atelier1/Components/Product';
 import { FuntionalComponent } from './atelier0/Atelier2/Functionnalcompoenent/FunctionalCompoenent';
+import ReduxComponent from './Redux/ReduxComponent';
 function App() {
   function hoisting(){
     console.log(a)
