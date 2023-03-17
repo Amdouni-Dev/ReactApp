@@ -3,10 +3,12 @@ import { Component, useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
-
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../Redux/actions'
 function Product(props) {
   const [product, setProduct] = useState(props.product);
   const [likes, setLikes] = useState(props.product.like);
+  
 
   const like = () => {
     setLikes(likes + 1);
@@ -14,7 +16,11 @@ function Product(props) {
   useEffect(() => {
     console.log("Likes Update");
   }, []);
+  const dispatch = useDispatch()
 
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product))
+  }
   return (
     <Card style={{ width: "18rem" }} className={likes > 5 && "bestProduct"}>
       <Card.Img
@@ -56,6 +62,10 @@ function Product(props) {
             <Col md={6}>
               <Button variant="danger" onClick={() => props.deleteProd(product.id)}>Delete Product</Button>
             </Col>
+       <Col>
+       <button onClick={() => handleAddToCart(product)}>Ajouter au panier</button>
+
+       </Col>
             
           </Row>
       </Card.Body>

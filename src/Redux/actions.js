@@ -10,3 +10,10 @@ export const decrement = () => {
         payload:1
     }
 }
+
+export const addToCart = (product) => {
+    return {
+      type: 'ADD_TO_CART',
+      payload: product
+    }
+  }

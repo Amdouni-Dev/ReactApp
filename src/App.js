@@ -17,6 +17,7 @@ import {Route,Routes} from 'react-router-dom';
 import CustomNavbar from './Atelier2Routage/Components/NavBar';
 import { lazy, Suspense } from 'react';
 import ReduxComponent from './Redux/ReduxComponent'
+import Cart from './Redux/CartComponent';
 const Home = lazy(()=>import('./Atelier2Routage/Components/Home'));
 const UpdateProduct = lazy(()=>import('../src/Atelier2Routage/Components/UJpdateProduct'));
 
@@ -39,6 +40,7 @@ function App() {
       <Route path="/" element={<h1>Home</h1>}/>
       <Route path="/home/:username" element={<Home/>}/> 
       <Route path="/Redux"  element={ <ReduxComponent /> } ></Route>
+      <Route path='/Cart'  element={ <Cart/> } ></Route>
 
 
       <Route path="/products" element={<ProductLayout />}>
