@@ -24,7 +24,7 @@ function ProductDetails() {
           <Col md={4}>
             <Card.Img
               variant="top"
-              src={require("../../assets/images" + product.img)}
+              src={require("../../assets/images/" + product.img)}
               alt="Product Img"
               height="300"
             />
